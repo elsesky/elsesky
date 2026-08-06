@@ -1,0 +1,12 @@
+/* ESJZone 特效工具 CSS - 用于 @keyframes 动画 */
+/* 上传到 GitHub + jsDelivr CDN 后通过 <link> 引入 */
+
+/* 抖动动画：skewX ±15° 快速抖动 */
+@keyframes vib-anim-1 {
+  0% { transform: skewX(-15deg); }
+  5% { transform: skewX(15deg); }
+  10% { transform: skewX(-15deg); }
+  15% { transform: skewX(15deg); }
+  20% { transform: skewX(0deg); }
+  100% { transform: skewX(0deg); }
+}
