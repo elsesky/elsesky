@@ -1,7 +1,3 @@
-/* ESJZone 特效工具 CSS - 用于 @keyframes 动画 */
-/* 上传到 GitHub + jsDelivr CDN 后通过 <link> 引入 */
-
-/* 抖动动画：skewX ±15° 快速抖动 */
 @keyframes vib-anim-1 {
   0% { transform: skewX(-15deg); }
   5% { transform: skewX(15deg); }
@@ -9,4 +5,26 @@
   15% { transform: skewX(15deg); }
   20% { transform: skewX(0deg); }
   100% { transform: skewX(0deg); }
+}
+
+.rainbow-char {
+  display: inline-block;
+  animation: rainbow-hue 3s linear infinite;
+  animation-delay: calc(var(--rh, 0) * 1ms);
+}
+
+@keyframes rainbow-hue {
+  0% { color: hsl(var(--rh, 0), 100%, 50%); }
+  8% { color: hsl(calc(var(--rh, 0) + 30), 100%, 50%); }
+  16% { color: hsl(calc(var(--rh, 0) + 60), 100%, 50%); }
+  24% { color: hsl(calc(var(--rh, 0) + 90), 100%, 50%); }
+  32% { color: hsl(calc(var(--rh, 0) + 120), 100%, 50%); }
+  40% { color: hsl(calc(var(--rh, 0) + 150), 100%, 50%); }
+  48% { color: hsl(calc(var(--rh, 0) + 180), 100%, 50%); }
+  56% { color: hsl(calc(var(--rh, 0) + 210), 100%, 50%); }
+  64% { color: hsl(calc(var(--rh, 0) + 240), 100%, 50%); }
+  72% { color: hsl(calc(var(--rh, 0) + 270), 100%, 50%); }
+  80% { color: hsl(calc(var(--rh, 0) + 300), 100%, 50%); }
+  88% { color: hsl(calc(var(--rh, 0) + 330), 100%, 50%); }
+  100% { color: hsl(calc(var(--rh, 0) + 360), 100%, 50%); }
 }
