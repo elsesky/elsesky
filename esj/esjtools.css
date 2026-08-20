@@ -1,8 +1,8 @@
 @keyframes vib-anim-1 {
-  0% { transform: skewX(-15deg); }
-  5% { transform: skewX(15deg); }
-  10% { transform: skewX(-15deg); }
-  15% { transform: skewX(15deg); }
+  0% { transform: skewX(-30deg); }
+  5% { transform: skewX(30deg); }
+  10% { transform: skewX(-30deg); }
+  15% { transform: skewX(30deg); }
   20% { transform: skewX(0deg); }
   100% { transform: skewX(0deg); }
 }
@@ -27,4 +27,23 @@
   80% { color: hsl(calc(var(--rh, 0) + 300), 100%, 50%); }
   88% { color: hsl(calc(var(--rh, 0) + 330), 100%, 50%); }
   100% { color: hsl(calc(var(--rh, 0) + 360), 100%, 50%); }
+}
+
+.esj-strike3 {
+  display: inline-block;
+  position: relative;
+}
+.esj-strike3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: currentColor;
+  box-shadow:
+    0 -4px 0 currentColor,
+    0 -2px 0 currentColor,
+    0  2px 0 currentColor,
+    0  4px 0 currentColor;
 }
