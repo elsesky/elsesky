@@ -47,3 +47,84 @@
     0  2px 0 currentColor,
     0  4px 0 currentColor;
 }
+
+/* ============ 注释特效（仿 masiro ae_noteref/ae_notecontent/ae_footnotesWarp） ============ */
+/* 正文中的 [注] 上标标记 */
+.esj-note-ref {
+  vertical-align: super;
+  font-size: x-small;
+  white-space: nowrap;
+  line-height: 1.4;
+  cursor: pointer;
+  color: #ddaa14;
+  position: relative;
+  padding: 0 1px;
+}
+/* 悬停/激活时显示的 ▲ 箭头 */
+.esj-note-ref::after {
+  content: '▲';
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  position: absolute;
+  right: calc(50% - 10px);
+  top: 10px;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.esj-note-ref[data-active]::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 注释 tooltip（默认隐藏） */
+.esj-note-content {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+  z-index: 1000;
+  background: #fff;
+  color: #333;
+  position: absolute;
+  padding: 0.3em;
+  border-radius: 0.3em;
+  box-shadow: 0 0 20px #555;
+  text-indent: 0;
+  display: block;
+  max-width: 90vw;
+  width: 15em;
+  font-size: 14px;
+  white-space: normal;
+  pointer-events: none;
+}
+.esj-note-content[data-active] {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 正文末尾的注释汇总区 */
+.esj-notes {
+  border-top: 1px solid #000;
+  font-size: 0.7em;
+  padding-top: 0.5em;
+  margin-left: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  text-indent: -1em;
+}
+.esj-notes > div {
+  margin: 0.2em 0;
+}
+.esj-note-arrow {
+  color: blue;
+  border: none;
+  background: inherit;
+  width: 1.5em;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+}
+
