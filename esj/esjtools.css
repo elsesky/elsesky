@@ -115,8 +115,14 @@
   padding-right: 1em;
   text-indent: -1em;
 }
-.esj-notes > div {
+.esj-notes > div,
+.esj-notes > p {
   margin: 0.2em 0;
+}
+/* 纯 CSS hover：不装油猴脚本的浏览器也能悬停显示 tooltip */
+.esj-note-ref:hover + .esj-note-content {
+  opacity: 1;
+  visibility: visible;
 }
 .esj-note-arrow {
   color: blue;
