@@ -134,17 +134,32 @@
   font-size: inherit;
 }
 
-/* ============ 跑马灯 / 滚动条幅（仿 PipeYume eva_like，keyframes 自建） ============ */
+/* ============ 跑马灯 / 滚动条幅（仿 PipeYume eva_like，keyframes 自建） ============
+   设计原则：布局相关属性（display / overflow / width / animation 等）全部写在本文件，
+   脚本只内联「动态值」（背景色 / 文字色 / 字号）。
+   原因：ESJ 服务端会剥离 <div>、并可能过滤内联样式，关键布局放外部 CSS 才能稳定生效。 */
 @keyframes esj-scroll-left {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-/* 外层容器：裁切超出部分 */
+/* 整块：上跑马灯 + 中间内容 + 下跑马灯（背景色/文字色由脚本内联覆盖） */
+.esj-marquee-block {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 10px 0;
+  background: #000000;
+  color: #ff0000;
+}
+/* 单条跑马灯容器：裁切超出部分（关键，防止内容撑爆正文） */
 .esj-marquee-wrap {
   display: flex;
   align-items: center;
   width: 100%;
+  max-width: 100%;
   overflow: hidden;
+  padding: 6px 0;
 }
 /* 滚动轨道：两份等宽内容，位移 -50% 实现无缝循环 */
 .esj-marquee-track {
@@ -152,6 +167,9 @@
   flex-shrink: 0;
   white-space: nowrap;
   animation: esj-scroll-left 15s linear infinite;
+  color: inherit;
+  font-size: 24px;
+  font-weight: bold;
 }
 /* 单个内容段（实际由脚本重复填充文字）
    min-width:50vw —— 内容过短时也能撑满容器，保证两份等宽、无缝滚动 */
@@ -161,6 +179,29 @@
   padding-right: 50px;
   letter-spacing: -0.3px;
   min-width: 50vw;
+}
+/* 中间内容容器 */
+.esj-marquee-mid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 12px 0;
+  color: inherit;
+}
+/* 中间内容文本（字号由脚本内联覆盖） */
+.esj-marquee-body {
+  display: inline-block;
+  white-space: pre-wrap;
+  line-height: 1.2;
+  font-size: 48px;
+}
+/* 竖向：writing-mode 竖排 */
+.esj-marquee-body-v {
+  writing-mode: vertical-rl;
+}
+/* 横向：居中 */
+.esj-marquee-body-h {
+  text-align: center;
 }
 /* 尊重系统「减少动态效果」偏好 */
 @media (prefers-reduced-motion: reduce) {
