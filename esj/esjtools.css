@@ -154,6 +154,11 @@
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+/* 反向滚动（下跑马灯用），与上跑马灯方向相反 */
+@keyframes esj-scroll-right {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
 /* 整块：上跑马灯 + 中间内容 + 下跑马灯（背景色/文字色由脚本内联覆盖） */
 .esj-marquee-block {
   display: block;
@@ -182,6 +187,11 @@
   color: inherit;
   font-size: 24px;
   font-weight: bold;
+}
+/* 反向滚动：下跑马灯与上跑马灯方向相反（只覆盖 animation-name，其余继承）
+   用双类选择器提高特异性，避免被 .esj-marquee-track 的 animation 简写覆盖 */
+.esj-marquee-track.esj-marquee-track--rev {
+  animation-name: esj-scroll-right;
 }
 /* 单个内容段（实际由脚本重复填充文字）
    min-width:50vw —— 内容过短时也能撑满容器，保证两份等宽、无缝滚动 */
