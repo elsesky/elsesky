@@ -134,6 +134,18 @@
   font-size: inherit;
 }
 
+/* ============ 文字方向（工具栏「竖向文字 / 横向文字」按钮） ============
+   writing-mode 对 inline 元素无效，必须 inline-block；这两个类由脚本包裹 span 时挂上。
+   写在本文件而不是内联，避免服务端过滤内联样式导致方向失效。 */
+.esj-vtext {
+  display: inline-block;
+  writing-mode: vertical-rl;
+}
+.esj-htext {
+  display: inline-block;
+  writing-mode: horizontal-tb;
+}
+
 /* ============ 跑马灯 / 滚动条幅（仿 PipeYume eva_like，keyframes 自建） ============
    设计原则：布局相关属性（display / overflow / width / animation 等）全部写在本文件，
    脚本只内联「动态值」（背景色 / 文字色 / 字号）。
@@ -203,9 +215,8 @@
 .esj-marquee-body-h {
   text-align: center;
 }
-/* 尊重系统「减少动态效果」偏好 */
-@media (prefers-reduced-motion: reduce) {
-  .esj-marquee-track {
-    animation: none;
-  }
-}
+/* 注意：这里「故意不」加
+   @media (prefers-reduced-motion: reduce) { .esj-marquee-track { animation: none; } }
+   原因：跑马灯是作者主动嵌入的正文特效，不是界面过渡动画。
+   部分浏览器/系统会把 prefers-reduced-motion 判为 reduce（实测 Firefox 下即如此），
+   一旦跟随该偏好关闭动画，帖子里的跑马灯就会「静止不动」，与作者意图不符。 */
