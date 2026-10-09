@@ -134,3 +134,37 @@
   font-size: inherit;
 }
 
+/* ============ 跑马灯 / 滚动条幅（仿 PipeYume eva_like，keyframes 自建） ============ */
+@keyframes esj-scroll-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+/* 外层容器：裁切超出部分 */
+.esj-marquee-wrap {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+/* 滚动轨道：两份等宽内容，位移 -50% 实现无缝循环 */
+.esj-marquee-track {
+  display: flex;
+  flex-shrink: 0;
+  white-space: nowrap;
+  animation: esj-scroll-left 15s linear infinite;
+}
+/* 单个内容段（实际由脚本重复填充文字）
+   min-width:50vw —— 内容过短时也能撑满容器，保证两份等宽、无缝滚动 */
+.esj-marquee-seg {
+  display: inline-block;
+  white-space: nowrap;
+  padding-right: 50px;
+  letter-spacing: -0.3px;
+  min-width: 50vw;
+}
+/* 尊重系统「减少动态效果」偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .esj-marquee-track {
+    animation: none;
+  }
+}
