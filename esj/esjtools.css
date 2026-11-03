@@ -212,3 +212,74 @@
 .esj-marquee-body-h {
   text-align: center;
 }
+
+/* ============================================================
+   星战片头卷轴（Star Wars opening crawl）
+   黑底 + 黄字 + 3D 透视滚动
+   依赖：<link> 加载本 CSS（CDN 通道），不依赖内联 style
+   ============================================================ */
+
+/* 开场淡入淡出（蓝字 "A long time ago..."） */
+@keyframes esj-crawl-intro-fade {
+  0%   { opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* 正文从底部向上滚动 */
+@keyframes esj-crawl-roll {
+  0%   { top: 100%; opacity: 1; }
+  80%  { opacity: 1; }
+  100% { top: 0;    opacity: 0; }
+}
+
+/* 全屏黑底舞台 */
+.esj-crawl {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* 开场蓝字 */
+.esj-crawl-intro {
+  color: #4bd5ee;
+  font-size: 32px;
+  line-height: 1.4;
+  text-align: center;
+  opacity: 0;
+  animation: esj-crawl-intro-fade 4s ease-out 1s 1 both;
+}
+
+/* 3D 透视倾斜舞台：perspective + rotateX 制造向地平线后退的效果 */
+.esj-crawl-stage {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 800px;
+  margin-left: -400px;
+  height: 50em;
+  color: #ff6;
+  font-size: 40px;
+  text-align: justify;
+  transform-origin: bottom;
+  transform: perspective(300px) rotateX(25deg);
+}
+
+/* 真正滚动的内层 */
+.esj-crawl-body {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  animation: esj-crawl-roll 24s linear 5s 1 both;
+}
+
+.esj-crawl-body p {
+  margin: 0 0 1em;
+}
