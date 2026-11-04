@@ -242,6 +242,7 @@
 }
 
 /* 3D 透视倾斜舞台：perspective + rotateX 制造向地平线后退的效果 */
+/* 高度与容器一致（560px），不能写死 50em——40px 字号下 50em=2000px，会溢出容器顶部 */
 .esj-crawl-stage {
   position: absolute;
   left: 50%;
@@ -249,7 +250,7 @@
   width: 800px;
   max-width: 100%;
   margin-left: -400px;
-  height: 50em;
+  height: 100%;
   color: #ff6;
   font-size: 40px;
   text-align: justify;
