@@ -242,20 +242,27 @@
 }
 
 /* 3D 透视倾斜舞台：perspective + rotateX 制造向地平线后退的效果 */
-/* 高度与容器一致（560px），不能写死 50em——40px 字号下 50em=2000px，会溢出容器顶部 */
+/* 定位：left/right:0 + margin auto 居中，不用负 margin
+   （原版 left:50% + margin-left:-400px 只在 ≥800px 宽时成立，
+     放进 680px 正文容器会整体偏左 60px） */
+/* 透视：perspective(500px) rotateX(20deg)
+   （原版 300px/25deg 会把 560px 的舞台透视压缩成 284px，
+     只剩容器一半高度；500px/20deg 压缩到 380px，占 68%，更适合正文内嵌） */
 .esj-crawl-stage {
   position: absolute;
-  left: 50%;
+  left: 0;
+  right: 0;
   bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
   width: 800px;
   max-width: 100%;
-  margin-left: -400px;
   height: 100%;
   color: #ff6;
   font-size: 40px;
-  text-align: justify;
+  text-align: center;
   transform-origin: bottom;
-  transform: perspective(300px) rotateX(25deg);
+  transform: perspective(500px) rotateX(20deg);
 }
 
 /* 真正滚动的内层（无限循环） */
